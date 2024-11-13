@@ -1,13 +1,67 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>File Upload for Huffman Compression</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animated Compression Process</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            color: #fff;
+            text-align: center;
+            overflow-x: hidden;
+        }
+
+        h1 {
+            color: #ffa500;
+            font-size: 2.2em;
+            margin-top: 20px;
+        }
+
+        
+        .upload-section {
+            margin-top: 50px;
+        }
+
+        .upload-section form {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            display: inline-block;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .upload-section input[type="file"] {
+            margin: 10px 0;
+            padding: 5px;
+            color: #ffa500;
+        }
+
+        .upload-section button {
+            padding: 10px 20px;
+            color: #fff;
+            background-color: #ffa500;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+
+        .upload-section button:hover {
+            background-color: #ff8000;
+        }
+    </style>
 </head>
 <body>
-    <h1>Upload a Text File for Huffman Compression</h1>
-    <form action="/upload" method="post" enctype="multipart/form-data">
-        <input type="file" name="file" required>
-        <button type="submit">Upload and Compress</button>
-    </form>
+    <h1>File Compression </h1>
+
+    <div class="upload-section">
+        <h1>Upload a Text File for Huffman Compression</h1>
+        <form action="/upload" method="post" enctype="multipart/form-data">
+            <input type="file" name="file" required>
+            <button type="submit">Upload and Compress</button>
+        </form>
+    </div>
 </body>
 </html>
