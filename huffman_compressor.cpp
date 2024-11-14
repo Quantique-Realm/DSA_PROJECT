@@ -88,6 +88,13 @@ void compressFile(const std::string& inputFilePath, const std::string& outputFil
         return;
     }
 
+    // Save character frequencies to reconstruct the tree
+    outputFile.put(frequency.size());
+    for (const auto& pair : frequency) {
+        outputFile.put(pair.first);
+        outputFile.write(reinterpret_cast<const char*>(&pair.second), sizeof(int));
+    }
+
     std::string encodedString = "";
     while (inputFile.get(ch)) {
         encodedString += huffmanCode[ch];
@@ -110,17 +117,79 @@ void compressFile(const std::string& inputFilePath, const std::string& outputFil
     std::cout << "File compressed successfully!" << std::endl;
 }
 
+// Function to decompress the file
+void decompressFile(const std::string& compressedFilePath, const std::string& outputFilePath) {
+    std::ifstream inputFile(compressedFilePath, std::ios::binary);
+    if (!inputFile.is_open()) {
+        std::cerr << "Failed to open the compressed file!" << std::endl;
+        return;
+    }
+
+    std::unordered_map<char, int> frequency;
+    int frequencySize = inputFile.get();
+    for (int i = 0; i < frequencySize; ++i) {
+        char ch = inputFile.get();
+        int freq;
+        inputFile.read(reinterpret_cast<char*>(&freq), sizeof(int));
+        frequency[ch] = freq;
+    }
+
+    Node* root = buildHuffmanTree(frequency);
+
+    int extraBits = inputFile.get();
+    std::string bitString = "";
+
+    char byte;
+    while (inputFile.get(byte)) {
+        bitString += std::bitset<8>(byte).to_string();
+    }
+
+    bitString = bitString.substr(0, bitString.size() - extraBits);
+
+    std::ofstream outputFile(outputFilePath, std::ios::out);
+    if (!outputFile.is_open()) {
+        std::cerr << "Failed to open the output file!" << std::endl;
+        return;
+    }
+
+    Node* currentNode = root;
+    for (char bit : bitString) {
+        if (bit == '0') {
+            currentNode = currentNode->left;
+        } else {
+            currentNode = currentNode->right;
+        }
+
+        if (!currentNode->left && !currentNode->right) {
+            outputFile.put(currentNode->ch);
+            currentNode = root;
+        }
+    }
+
+    inputFile.close();
+    outputFile.close();
+    std::cout << "File decompressed successfully!" << std::endl;
+}
+
 // Main function to accept command-line arguments
 int main(int argc, char* argv[]) {
-    if (argc != 3) {
-        std::cerr << "Usage: " << argv[0] << " <input_file_path> <output_file_path>" << std::endl;
+    if (argc < 4) {
+        std::cerr << "Usage: " << argv[0] << " <compress|decompress> <input_file_path> <output_file_path>" << std::endl;
         return 1;
     }
 
-    std::string inputFilePath = argv[1];
-    std::string compressedFilePath = argv[2];
+    std::string mode = argv[1];
+    std::string inputFilePath = argv[2];
+    std::string outputFilePath = argv[3];
 
-    compressFile(inputFilePath, compressedFilePath);
+    if (mode == "compress") {
+        compressFile(inputFilePath, outputFilePath);
+    } else if (mode == "decompress") {
+        decompressFile(inputFilePath, outputFilePath);
+    } else {
+        std::cerr << "Invalid mode! Use 'compress' or 'decompress'." << std::endl;
+        return 1;
+    }
 
     return 0;
 }

@@ -58,20 +58,39 @@
     </style>
 </head>
 <body>
-    <h1>File Compression</h1>
+    <h1>File Compression and Decompression</h1>
 
+    <!-- File Compression Section -->
     <div class="upload-section">
-        <h1>Upload a Text File for Huffman Compression</h1>
-        <form action="/upload" method="post" enctype="multipart/form-data">
+        <h2>Upload a Text File for Huffman Compression</h2>
+        <form action="{{ url_for('upload_compress_file') }}" method="post" enctype="multipart/form-data">
             <input type="file" name="file" required>
             <button type="submit">Upload and Compress</button>
         </form>
     </div>
 
-    {% if filename %}
+    <!-- Download Compressed File Link -->
+    {% if compressed_filename %}
     <div class="download-link">
         <p>Your file has been compressed successfully!</p>
-        <p><a href="{{ url_for('download_file', filename=filename) }}"> Download Your Compressed File</a></p>
+        <p><a href="{{ url_for('download_compressed_file', filename=compressed_filename) }}">Download Compressed File</a></p>
+    </div>
+    {% endif %}
+
+    <!-- File Decompression Section -->
+    <div class="upload-section">
+        <h2>Upload a Compressed File for Decompression</h2>
+        <form action="{{ url_for('decompress_file') }}" method="post" enctype="multipart/form-data">
+            <input type="file" name="file" required>
+            <button type="submit">Upload and Decompress</button>
+        </form>
+    </div>
+
+    <!-- Download Decompressed File Link -->
+    {% if decompressed_filename %}
+    <div class="download-link">
+        <p>Your file has been decompressed successfully!</p>
+        <p><a href="{{ url_for('download_decompressed_file', filename=decompressed_filename) }}">Download Decompressed File</a></p>
     </div>
     {% endif %}
 </body>

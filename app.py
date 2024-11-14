@@ -16,8 +16,9 @@ app.config['COMPRESSED_FOLDER'] = COMPRESSED_FOLDER
 def index():
     return render_template('index.html', filename=None)
 
-@app.route('/upload', methods=['POST'])
-def upload_file():
+# Route for file upload and compression
+@app.route('/upload_compress', methods=['POST'])
+def upload_compress_file():
     if 'file' not in request.files:
         return 'No file part', 400
     file = request.files['file']
@@ -26,22 +27,48 @@ def upload_file():
     if file:
         input_path = os.path.join(app.config['UPLOAD_FOLDER'], file.filename)
         file.save(input_path)
-        
+
         output_filename = file.filename.split('.')[0] + '_compressed.bin'
         output_path = os.path.join(app.config['COMPRESSED_FOLDER'], output_filename)
 
         # Run the C++ Huffman compression program
         try:
-            subprocess.run(['huffman_compressor.exe', input_path, output_path], check=True)
+            subprocess.run(['huffman_compressor.exe', 'compress', input_path, output_path], check=True)
         except Exception as e:
             return str(e), 500
 
-        # Render the same template but with the filename to show the download link
-        return render_template('index.html', filename=output_filename)
+        return render_template('index.html', compressed_filename=output_filename)
 
-@app.route('/download/<filename>')
-def download_file(filename):
+# Route for decompression
+@app.route('/decompress', methods=['POST'])
+def decompress_file():
+    if 'file' not in request.files:
+        return 'No file part', 400
+    file = request.files['file']
+    if file.filename == '':
+        return 'No selected file', 400
+    if file:
+        compressed_path = os.path.join(app.config['COMPRESSED_FOLDER'], file.filename)
+        decompressed_filename = file.filename.split('.')[0] + '_decompressed.txt'
+        decompressed_path = os.path.join(app.config['UPLOAD_FOLDER'], decompressed_filename)
+
+        # Run the C++ Huffman decompression program
+        try:
+            subprocess.run(['huffman_compressor.exe', 'decompress', compressed_path, decompressed_path], check=True)
+        except Exception as e:
+            return str(e), 500
+
+        return render_template('index.html', decompressed_filename=decompressed_filename)
+
+# Route to download the compressed file
+@app.route('/download_compressed/<filename>')
+def download_compressed_file(filename):
     return send_from_directory(app.config['COMPRESSED_FOLDER'], filename, as_attachment=True)
+
+# Route to download the decompressed file
+@app.route('/download_decompressed/<filename>')
+def download_decompressed_file(filename):
+    return send_from_directory(app.config['UPLOAD_FOLDER'], filename, as_attachment=True)
 
 if __name__ == '__main__':
     app.run(debug=True)
