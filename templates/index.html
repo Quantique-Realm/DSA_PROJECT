@@ -12,18 +12,14 @@
             text-align: center;
             overflow-x: hidden;
         }
-
         h1 {
             color: #ffa500;
             font-size: 2.2em;
             margin-top: 20px;
         }
-
-        
         .upload-section {
             margin-top: 50px;
         }
-
         .upload-section form {
             background: rgba(255, 255, 255, 0.1);
             padding: 20px;
@@ -31,13 +27,11 @@
             display: inline-block;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
-
         .upload-section input[type="file"] {
             margin: 10px 0;
             padding: 5px;
             color: #ffa500;
         }
-
         .upload-section button {
             padding: 10px 20px;
             color: #fff;
@@ -47,14 +41,24 @@
             border-radius: 5px;
             font-size: 1em;
         }
-
         .upload-section button:hover {
             background-color: #ff8000;
+        }
+        .download-link {
+            margin-top: 20px;
+        }
+        .download-link a {
+            color: #ffa500;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .download-link a:hover {
+            color: #ff8000;
         }
     </style>
 </head>
 <body>
-    <h1>File Compression </h1>
+    <h1>File Compression</h1>
 
     <div class="upload-section">
         <h1>Upload a Text File for Huffman Compression</h1>
@@ -63,5 +67,12 @@
             <button type="submit">Upload and Compress</button>
         </form>
     </div>
+
+    {% if filename %}
+    <div class="download-link">
+        <p>Your file has been compressed successfully!</p>
+        <p><a href="{{ url_for('download_file', filename=filename) }}"> Download Your Compressed File</a></p>
+    </div>
+    {% endif %}
 </body>
 </html>

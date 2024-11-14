@@ -14,7 +14,7 @@ app.config['COMPRESSED_FOLDER'] = COMPRESSED_FOLDER
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('index.html', filename=None)
 
 @app.route('/upload', methods=['POST'])
 def upload_file():
@@ -32,11 +32,12 @@ def upload_file():
 
         # Run the C++ Huffman compression program
         try:
-            subprocess.run(['./huffman_compressor', input_path, output_path], check=True)
+            subprocess.run(['huffman_compressor.exe', input_path, output_path], check=True)
         except Exception as e:
             return str(e), 500
 
-        return redirect(url_for('download_file', filename=output_filename))
+        # Render the same template but with the filename to show the download link
+        return render_template('index.html', filename=output_filename)
 
 @app.route('/download/<filename>')
 def download_file(filename):
