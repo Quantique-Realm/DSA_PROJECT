@@ -1,4 +1,4 @@
-Huffman Compression & Decompression Tool
+#Huffman Compression & Decompression Tool
 
 A lightweight and efficient tool for **lossless data compression** and **decompression** using the Huffman Encoding algorithm, with a user-friendly web interface powered by Flask.
 
