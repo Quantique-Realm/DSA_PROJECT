@@ -111,10 +111,10 @@ A lightweight and efficient tool for **lossless data compression** and **decompr
 ![WhatsApp Image 2024-11-20 at 23 47 39_144ce02f](https://github.com/user-attachments/assets/d6464c95-db48-469b-a6b2-bee70c96700c)
 
 ### Compression Results
-![WhatsApp Image 2024-11-20 at 23 36 31_f2ef9331](https://github.com/user-attachments/assets/7f1aa1f9-ae9f-474c-8b5a-bd4d09272b1a)
+![WhatsApp Image 2024-11-20 at 23 33 56_78ac8a38](https://github.com/user-attachments/assets/f2a1b25c-08b3-4b78-af9a-e857c8c6a35c)
 
 ### Decompression Results
-https://github.com/Quantique-Realm/DSA_PROJECT/issues/3#issue-2676762655
+![WhatsApp Image 2024-11-20 at 23 36 31_f2ef9331](https://github.com/user-attachments/assets/7f1aa1f9-ae9f-474c-8b5a-bd4d09272b1a)
 
 ---
 
