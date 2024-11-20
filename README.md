@@ -1,4 +1,4 @@
-#Huffman Compression & Decompression Tool
+# Huffman File Compression and Decompression Web Application
 
 A lightweight and efficient tool for **lossless data compression** and **decompression** using the Huffman Encoding algorithm, with a user-friendly web interface powered by Flask.
 
@@ -26,13 +26,13 @@ Technologies Used
 
 ```
 .
-├── app.py                        # Flask application for web interface
-├── huffman_compressor.cpp        # C++ program for compression and decompression
+├── app.py                       
+├── huffman_compressor.cpp       
 ├── templates/
-│   └── index.html                # HTML template for web interface
-├── uploads/                      # Folder to store uploaded files
-├── compressed_files/             # Folder to store compressed files
-└── README.md                     # Project documentation
+│   └── index.html             
+├── uploads/                     
+├── compressed_files/            
+└── README.md                     
 ```
 
 ---
