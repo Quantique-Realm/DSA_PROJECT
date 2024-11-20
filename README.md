@@ -105,7 +105,7 @@ A lightweight and efficient tool for **lossless data compression** and **decompr
 ## Screenshots
 
 ### Home Page
-![Home Page](https://via.placeholder.com/800x400?text=Home+Page)
+![WhatsApp Image 2024-11-20 at 23 33 57_db52ff9d](https://github.com/user-attachments/assets/87d99515-725c-4f75-8c2f-a76546579675)
 
 ### File Upload
 ![File Upload](https://via.placeholder.com/800x400?text=File+Upload)
