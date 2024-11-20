@@ -4,7 +4,7 @@ A lightweight and efficient tool for **lossless data compression** and **decompr
 
 ---
 
-Features
+### Features
 
 - **Lossless Compression**: Compresses files without losing any data, reducing storage space.
 - **Fast Decompression**: Recovers original data from compressed files with high accuracy.
@@ -14,7 +14,7 @@ Features
 
 ---
 
-Technologies Used
+### Technologies Used
 
 - **C++**: Core implementation of Huffman Compression and Decompression.
 - **Flask (Python)**: Web interface for user interactions.
