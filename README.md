@@ -105,16 +105,16 @@ A lightweight and efficient tool for **lossless data compression** and **decompr
 ## Screenshots
 
 ### Home Page
-![WhatsApp Image 2024-11-20 at 23 33 57_db52ff9d](https://github.com/user-attachments/assets/87d99515-725c-4f75-8c2f-a76546579675)
+![Home Page](DOCS/Home%20Page.jpg)
 
 ### File Upload
-![WhatsApp Image 2024-11-20 at 23 47 39_144ce02f](https://github.com/user-attachments/assets/d6464c95-db48-469b-a6b2-bee70c96700c)
+![File Upload](DOCS/File%20upload.jpg)
 
 ### Compression Results
-![WhatsApp Image 2024-11-20 at 23 33 56_78ac8a38](https://github.com/user-attachments/assets/f2a1b25c-08b3-4b78-af9a-e857c8c6a35c)
+![Compression Results](DOCS/Compression%20Results.jpg)
 
 ### Decompression Results
-![WhatsApp Image 2024-11-20 at 23 36 31_f2ef9331](https://github.com/user-attachments/assets/7f1aa1f9-ae9f-474c-8b5a-bd4d09272b1a)
+![Decompression Results](DOCS/Decompression%20Results.jpg)
 
 ---
 
